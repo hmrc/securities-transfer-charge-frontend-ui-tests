@@ -2,7 +2,7 @@
 
 # securities-transfer-charge-frontend-ui-tests
 
-<SERVICE_NAME> UI journey tests.
+UI journey tests suite for the [securities-transfer-charge-reg-frontend](https://github.com/hmrc/securities-transfer-charge-reg-frontend) using SeleniumWebdriver with ScalaTest.
 
 ## Pre-requisites
 
@@ -14,10 +14,10 @@ Start Mongo Docker container as follows:
 docker run --rm -d -p 27017:27017 --name mongo percona/percona-server-mongodb:6.0
 ```
 
-Start `<SERVICE_MANAGER_PROFILE>` services as follows:
+To start the required services via [service manager](https://github.com/hmrc/sm2), run:
 
 ```bash
-sm2 --start <SERVICE_MANAGER_PROFILE>
+sm2 --start STAMP_TAXES_ON_SHARES_ALL
 ```
 
 ## Tests
@@ -29,6 +29,22 @@ Run tests as follows:
 
 ```bash
 sbt clean -Dbrowser="<browser>" -Denvironment="<environment>" test testReport
+```
+
+To run the UI tests locally, execute the script:
+
+```bash
+./run-tests.sh <browser> <environment>
+```
+
+### ZAP tests
+
+The `run_zap_tests.sh` script uses [dast-config-manager](https://github.com/hmrc/dast-config-manager) to run ZAP tests locally using the DAST Docker image.
+
+To run the ZAP tests locally, execute the script:
+
+```bash
+./run_zap_tests.sh
 ```
 
 ## Scalafmt

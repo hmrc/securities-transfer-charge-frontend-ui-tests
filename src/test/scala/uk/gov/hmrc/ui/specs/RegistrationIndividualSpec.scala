@@ -44,7 +44,7 @@ class RegistrationIndividualSpec
       And("User enters the required values - DOB, address, email, contact")
       DateOfBirthPage.enterDob("01", "01", "2000")
       YourAddressPage.enterCountry("United Kingdom")
-      FindYourAddressPage.enterPostCode("NE325JU")
+      FindYourAddressPage.enterPostCode("NE32 5JU")
       SelectYourAddressPage.selectAddress()
       ConfirmYourAddressPage.confirm()
       EmailAddressPage.enterEmailAddress("abcd@xyz.com")

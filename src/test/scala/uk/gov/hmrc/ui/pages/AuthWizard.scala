@@ -19,7 +19,7 @@ package uk.gov.hmrc.ui.pages
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.AuthWizard.click
 import uk.gov.hmrc.ui.util.Env
-import uk.gov.hmrc.ui.util.TestDataGenerator.{generateNino, generateRandomString}
+import uk.gov.hmrc.ui.util.TestDataGenerator.{generateRandomString, testNino}
 
 object AuthWizard extends BasePage {
 
@@ -42,7 +42,7 @@ object AuthWizard extends BasePage {
     AuthWizard.navigateToPage(url)
     driver.findElement(confidenceLevel).sendKeys("250")
     driver.findElement(affinityGroup).sendKeys("Individual")
-    driver.findElement(nino).sendKeys(generateNino())
+    driver.findElement(nino).sendKeys(testNino)
     driver.findElement(givenName).sendKeys(generateRandomString(10))
     driver.findElement(familyName).sendKeys(generateRandomString(10))
     click(btnSubmit)

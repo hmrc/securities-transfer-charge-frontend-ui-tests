@@ -16,29 +16,18 @@
 
 package uk.gov.hmrc.ui.pages
 
-object CheckYourDetailsPage extends BasePage {
+object EnterYourAddressPage extends BasePage {
 
-  override def pageUrl: String = "register-securities-transfer-charge/check-your-details"
-
-  sealed trait ConfirmationOption {
-    def selector: String
-  }
-
-  case object Yes extends ConfirmationOption {
-    val selector = "#value"
-  }
-
-  case object No extends ConfirmationOption {
-    val selector = "#value-no"
-  }
+  override def pageUrl: String = "edit"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Check your details - securities-transfer-charge-reg-frontend - GOV.UK"
+    "Enter your address - - GOV.UK"
 
-  def confirmDetails(option: ConfirmationOption = Yes): Unit = {
+  def enterAddressDetails(postcode: String): Unit = {
     verifyPageTitle(pageTitle)
-    radioButton(option.selector)
+    input(Locators.txtAddress1, "Anything")
+    input(Locators.txtPostCode, postcode)
     continue()
   }
 }

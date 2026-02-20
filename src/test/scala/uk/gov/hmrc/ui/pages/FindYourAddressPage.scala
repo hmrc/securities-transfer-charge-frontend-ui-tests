@@ -29,4 +29,9 @@ object FindYourAddressPage extends BasePage {
     input(Locators.txtPostCode, postcode)
     continue()
   }
+
+  def clickEnterTheAddressManually(): Unit = {
+    verifyPageTitle(pageTitle)
+    click(Locators.lnkAddrManually)
+  }
 }

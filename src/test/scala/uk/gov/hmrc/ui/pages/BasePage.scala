@@ -56,7 +56,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     val txtContactNumber: By = By.cssSelector("#value")
     val cbxConfirm           = "#value_0"
     val txtHeader: By        = By.xpath("//h1")
-    val lnkAddrManually      = "Enter the address manually"
+    val lnkAddrManually      = By.ById("manualAddress")
     val txtPostCode: By      = By.ById("postcode")
     val txtAddress1: By      = By.ById("line1")
     val txtTown: By          = By.ById("town")

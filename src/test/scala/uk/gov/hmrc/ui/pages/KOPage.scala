@@ -29,8 +29,8 @@ object KOPage extends BasePage {
   def validateLowClErrorMessage(): Unit = {
 
     val expectedHeading = "Before you use the service"
-    val headingText = driver.findElement(By.cssSelector("h1")).getText.trim
-    
+    val headingText     = driver.findElement(By.cssSelector("h1")).getText.trim
+
     assert(
       headingText == expectedHeading,
       s"Expected heading text '$expectedHeading' but found '$headingText'"
@@ -40,8 +40,8 @@ object KOPage extends BasePage {
   def validateCheckYourDetailsErrorMessage(): Unit = {
 
     val expectedHeading = "You must update the details on your government gateway account"
-    val headingText = driver.findElement(By.cssSelector("h1")).getText.trim
-    
+    val headingText     = driver.findElement(By.cssSelector("h1")).getText.trim
+
     assert(
       headingText == expectedHeading,
       s"Expected heading text '$expectedHeading' but found '$headingText'"

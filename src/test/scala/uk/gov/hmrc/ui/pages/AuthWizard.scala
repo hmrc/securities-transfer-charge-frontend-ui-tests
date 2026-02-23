@@ -38,11 +38,11 @@ object AuthWizard extends BasePage {
   val givenName: By       = By.id("itmp.givenName")
   val familyName: By      = By.id("itmp.familyName")
 
-  def loginAsIndividual(): Unit = {
+  def loginAsIndividual(cl: String = "250"): Unit = {
     AuthWizard.navigateToPage(url)
-    driver.findElement(confidenceLevel).sendKeys("250")
+    driver.findElement(confidenceLevel).sendKeys(cl)
     driver.findElement(affinityGroup).sendKeys("Individual")
-    driver.findElement(nino).sendKeys(generateNino())
+    driver.findElement(nino).sendKeys(generateNino("AC"))
     driver.findElement(givenName).sendKeys(generateRandomString(10))
     driver.findElement(familyName).sendKeys(generateRandomString(10))
     click(btnSubmit)

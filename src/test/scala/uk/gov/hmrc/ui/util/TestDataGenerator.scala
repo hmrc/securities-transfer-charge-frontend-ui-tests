@@ -41,4 +41,12 @@ object TestDataGenerator {
     val random = new Random()
     (1 to length).map(_ => chars(random.nextInt(chars.length))).mkString
   }
+
+  def generateNino(prefix: String = "AA"): String = {
+    val num    = Random.nextInt(1000000)
+    val suffix = "C"
+    f"$prefix$num%06d$suffix"
+  }
+
+  val testNino: String = generateNino("AB")
 }

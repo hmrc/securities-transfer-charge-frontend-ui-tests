@@ -44,8 +44,28 @@ class RegistrationIndividualSpec
       And("User enters the required values - DOB, address, email, contact")
       DateOfBirthPage.enterDob("01", "01", "2000")
       YourAddressPage.enterCountry("United Kingdom")
-      FindYourAddressPage.enterPostCode("NE325JU")
+      FindYourAddressPage.enterPostCode("NE32 5JU")
       SelectYourAddressPage.selectAddress()
+      ConfirmYourAddressPage.confirm()
+      EmailAddressPage.enterEmailAddress("abcd@xyz.com")
+      ContactNumberPage.enterContactNumber("+44 1234567890")
+
+      Then("User verifies success message is displayed")
+      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+    }
+    Scenario("Register a user as an Individual Using Manual Address Entry") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAsIndividual()
+
+      When("User navigates to Registration start page")
+      RegistrationPage.startRegistration()
+      CheckYourDetailsPage.confirmDetails()
+
+      And("User enters the required values - DOB, address, email, contact")
+      DateOfBirthPage.enterDob("01", "01", "2001")
+      YourAddressPage.enterCountry("United Kingdom")
+      FindYourAddressPage.clickEnterTheAddressManually()
+      EnterYourAddressPage.enterAddressDetails("NE32 5JU")
       ConfirmYourAddressPage.confirm()
       EmailAddressPage.enterEmailAddress("abcd@xyz.com")
       ContactNumberPage.enterContactNumber("+44 1234567890")

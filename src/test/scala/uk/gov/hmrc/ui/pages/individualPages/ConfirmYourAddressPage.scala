@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.individualPages
 
-object RegistrationPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "register-securities-transfer-charge/register"
+object ConfirmYourAddressPage extends BasePage {
 
-  override def pageTitle: String =
-//    "Stamp taxes on shares - HMRC - Stamp tax on shares - GOV.UK"
-    "Register to tell us about a securities transfer - securities-transfer-charge-reg-frontend - GOV.UK"
+  override def pageUrl: String = "/lookup-address/*/confirm"
 
-  def startRegistration(): Unit = {
-    verifyPageTitle(RegistrationPage.pageTitle)
+  // placeholder yet to finalize the title
+  override def pageTitle: String = {
+    "Confirm your address - - GOV.UK"
+  }
+//  "Review and confirm - - GOV.UK"
+
+  def confirm(): Unit = {
+//    verifyPageTitle(pageTitle)
     continue()
   }
 }

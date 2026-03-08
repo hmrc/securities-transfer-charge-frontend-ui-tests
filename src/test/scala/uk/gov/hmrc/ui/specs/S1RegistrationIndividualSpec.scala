@@ -21,8 +21,10 @@ import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.*
+import uk.gov.hmrc.ui.pages.CommonPages.{AuthWizard, RegistrationCompletePage, RegistrationPage}
+import uk.gov.hmrc.ui.pages.individualPages.*
 
-class RegistrationIndividualSpec
+class S1RegistrationIndividualSpec
     extends AnyFeatureSpec
     with BaseSpec
     with GivenWhenThen
@@ -32,7 +34,7 @@ class RegistrationIndividualSpec
     with Browser
     with ScreenshotOnFailure {
 
-  Feature("STC frontend Journeys") {
+  Feature("STC frontend Individual Journeys") {
     Scenario("Register a user as an Individual") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAsIndividual()
@@ -53,6 +55,7 @@ class RegistrationIndividualSpec
       Then("User verifies success message is displayed")
       RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
     }
+
     Scenario("Register a user as an Individual Using Manual Address Entry") {
       Given("User enters login using the Authority Wizard page")
       AuthWizard.loginAsIndividual()
@@ -65,7 +68,27 @@ class RegistrationIndividualSpec
       DateOfBirthPage.enterDob("01", "01", "2001")
       YourAddressPage.enterCountry("United Kingdom")
       FindYourAddressPage.clickEnterTheAddressManually()
-      EnterYourAddressPage.enterAddressDetails("NE32 5JU")
+      EnterYourAddressPage.enterAddressDetails("A1", "NE32 5JU")
+      ConfirmYourAddressPage.confirm()
+      EmailAddressPage.enterEmailAddress("abcd@xyz.com")
+      ContactNumberPage.enterContactNumber("+44 1234567890")
+
+      Then("User verifies success message is displayed")
+      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+    }
+
+    Scenario("Register a user as an Individual Using Non UK Address") {
+      Given("User enters login using the Authority Wizard page")
+      AuthWizard.loginAsIndividual()
+
+      When("User navigates to Registration start page")
+      RegistrationPage.startRegistration()
+      CheckYourDetailsPage.confirmDetails()
+
+      And("User enters the required values - DOB, address, email, contact")
+      DateOfBirthPage.enterDob("01", "01", "2001")
+      YourAddressPage.enterCountry("India")
+      EnterYourAddressPage.enterAddressDetails("A1", "517503")
       ConfirmYourAddressPage.confirm()
       EmailAddressPage.enterEmailAddress("abcd@xyz.com")
       ContactNumberPage.enterContactNumber("+44 1234567890")

@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.CommonPages
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.ui.pages.AuthWizard.click
-import uk.gov.hmrc.ui.util.Env
+import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.CommonPages.AuthWizard.click
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateNino, generateRandomString}
+import uk.gov.hmrc.ui.util.{Env, Urls}
 
 object AuthWizard extends BasePage {
 
@@ -39,12 +40,18 @@ object AuthWizard extends BasePage {
   val familyName: By      = By.id("itmp.familyName")
 
   def loginAsIndividual(cl: String = "250"): Unit = {
-    AuthWizard.navigateToPage(url)
+    AuthWizard.navigateToPage(url + Urls.AUTH)
     driver.findElement(confidenceLevel).sendKeys(cl)
     driver.findElement(affinityGroup).sendKeys("Individual")
     driver.findElement(nino).sendKeys(generateNino("AC"))
     driver.findElement(givenName).sendKeys(generateRandomString(10))
     driver.findElement(familyName).sendKeys(generateRandomString(10))
+    click(btnSubmit)
+  }
+
+  def loginAsOrganisation(): Unit = {
+    AuthWizard.navigateToPage(url + Urls.AUTH)
+    driver.findElement(affinityGroup).sendKeys("Organisation")
     click(btnSubmit)
   }
 }

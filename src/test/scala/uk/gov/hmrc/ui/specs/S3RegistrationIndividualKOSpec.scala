@@ -21,9 +21,12 @@ import org.scalatest.verbs.ShouldVerb
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, GivenWhenThen}
 import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.*
-import uk.gov.hmrc.ui.pages.CheckYourDetailsPage.No
+import uk.gov.hmrc.ui.pages.CommonPages.{AuthWizard, RegistrationPage}
+import uk.gov.hmrc.ui.pages.KOPage.{checkYourDetails, lowCl}
+import uk.gov.hmrc.ui.pages.individualPages.CheckYourDetailsPage
+import uk.gov.hmrc.ui.pages.individualPages.CheckYourDetailsPage.No
 
-class RegistrationIndividualKOSpec
+class S3RegistrationIndividualKOSpec
     extends AnyFeatureSpec
     with BaseSpec
     with GivenWhenThen
@@ -33,13 +36,13 @@ class RegistrationIndividualKOSpec
     with Browser
     with ScreenshotOnFailure {
 
-  Feature("STC frontend Journeys") {
+  Feature("STC frontend Individual Journeys") {
     Scenario("Error scenario for Register Individual using Low Confidence level") {
       Given("User enters login using the Authority Wizard page with 50 Confidence level")
       AuthWizard.loginAsIndividual("50")
 
       Then("User verifies KO message is displayed")
-      KOPage.validateLowClErrorMessage()
+      KOPage.validateErrorMessage(lowCl)
     }
 
     Scenario("Error scenario for Check your details") {
@@ -51,7 +54,7 @@ class RegistrationIndividualKOSpec
       CheckYourDetailsPage.confirmDetails(No)
 
       Then("User verifies KO message is displayed")
-      KOPage.validateCheckYourDetailsErrorMessage()
+      KOPage.validateErrorMessage(checkYourDetails)
     }
   }
 }

@@ -14,24 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.businessPages
 
-object FindYourAddressPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "lookup-address/*/lookup"
+object GRSYourUTRLimitedPage extends BasePage {
+
+  override def pageUrl: String = "/identify-your-incorporated-business/*/ct-utr"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Find your address - - GOV.UK"
+    "Your partnership’s Self Assessment Unique Taxpayer Reference (UTR) - - GOV.UK"
 
-  def enterPostCode(postcode: String): Unit = {
+  def enterUTR(utr: String): Unit = {
     verifyPageTitle(pageTitle)
-    input(Locators.txtPostCode, postcode)
+    input(Locators.txtSaUtr, utr)
     continue()
-  }
-
-  def clickEnterTheAddressManually(): Unit = {
-    verifyPageTitle(pageTitle)
-    click(Locators.lnkAddrManually)
   }
 }

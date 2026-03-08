@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.util
+package uk.gov.hmrc.ui.pages.businessPages
 
-object Env {
-  val baseUrl: String = Option(System.getProperty("environment")).map(_.toLowerCase) match {
-    case Some("dev")     => Urls.DEV
-    case Some("local")   => Urls.LOCAL
-    case Some("qa")      => Urls.QA
-    case Some("staging") => Urls.STAGING
-    case _               => Urls.LOCAL
+import uk.gov.hmrc.ui.pages.BasePage
+
+object CompanyContactNumberPage extends BasePage {
+
+  override def pageUrl: String = "register-securities-transfer-charge/org/what-is-your-contact-number"
+
+  // placeholder yet to finalize the title
+  override def pageTitle: String =
+    "Enter a contact phone number - securities-transfer-charge-reg-frontend - GOV.UK"
+
+  def enterContactNumber(contactNumber: String): Unit = {
+    verifyPageTitle(pageTitle)
+    input(Locators.txtContactNumber, contactNumber)
+    continue()
   }
 }

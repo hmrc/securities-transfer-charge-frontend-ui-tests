@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.businessPages
 
-object EnterYourAddressPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "edit"
+object ConfirmYourCompanysAddressPage extends BasePage {
+
+  override def pageUrl: String = "/lookup-address/*/confirm"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Enter your address - - GOV.UK"
+    "Confirm your company’s address - - GOV.UK & Review and confirm - - GOV.UK"
 
-  def enterAddressDetails(postcode: String): Unit = {
-    verifyPageTitle(pageTitle)
-    input(Locators.txtAddress1, "Anything")
-    input(Locators.txtPostCode, postcode)
+  def confirm(): Unit = {
+    verifyPageTitleContains(pageTitle)
     continue()
   }
 }

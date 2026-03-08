@@ -14,31 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.businessPages
 
-object CheckYourDetailsPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "register-securities-transfer-charge/check-your-details"
+object GRSYourUTRPage extends BasePage {
 
-  sealed trait ConfirmationOption {
-    def selector: String
-  }
-
-  case object Yes extends ConfirmationOption {
-    val selector = "#value"
-  }
-
-  case object No extends ConfirmationOption {
-    val selector = "#value-no"
-  }
+  override def pageUrl: String = "/identify-your-incorporated-business/*/ct-utr"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Check your details - securities-transfer-charge-reg-frontend - GOV.UK"
+  "What is the company registration number? - - GOV.UK & Your Corporation Tax Unique Taxpayer Reference (UTR) - - GOV.UK & What is the registered society’s Unique Taxpayer Reference? - - GOV.UK"
 
-  def confirmDetails(option: ConfirmationOption = Yes): Unit = {
-    verifyPageTitle(pageTitle)
-    radioButton(option.selector)
+  def enterUTR(utr: String): Unit = {
+    verifyPageTitleContains(pageTitle)
+    input(Locators.txtCtUtr, utr)
     continue()
   }
 }

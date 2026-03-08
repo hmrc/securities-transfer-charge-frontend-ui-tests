@@ -14,26 +14,23 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.individualPages
 
-import org.openqa.selenium.By
+import uk.gov.hmrc.ui.pages.BasePage
 
-object RegistrationCompletePage extends BasePage {
+object YourAddressPage extends BasePage {
 
-  override def pageUrl: String = "/register-securities-transfer-charge/registration-complete"
+  override def pageUrl: String = "lookup-address/*/country-picker"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Registration complete - securities-transfer-charge-reg-frontend - GOV.UK"
+    "Which country do you live in? - - GOV.UK"
 
-  def validateRegistrationCompleteMessage(expectedTitle: String): Unit = {
-
-    val panelTitle = driver.findElement(By.cssSelector(".govuk-panel__title"))
-    val actualText = panelTitle.getText.trim
-
-    assert(
-      actualText == expectedTitle,
-      s"Expected confirmation panel title '$expectedTitle' but found '$actualText'"
-    )
+  def enterCountry(country: String): Unit = {
+    verifyPageTitle(pageTitle)
+    input(Locators.dropDownCountry, country)
+    continue()
+    // additional continue is to select and continue to next page
+    continue()
   }
 }

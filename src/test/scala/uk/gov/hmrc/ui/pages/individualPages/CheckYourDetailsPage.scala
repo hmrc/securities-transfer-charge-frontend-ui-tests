@@ -14,21 +14,33 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.individualPages
 
-object YourAddressPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "lookup-address/*/country-picker"
+object CheckYourDetailsPage extends BasePage {
+
+  override def pageUrl: String = "register-securities-transfer-charge/check-your-details"
+
+  sealed trait ConfirmationOption {
+    def selector: String
+  }
+
+  case object Yes extends ConfirmationOption {
+    val selector = "#value"
+  }
+
+  case object No extends ConfirmationOption {
+    val selector = "#value-no"
+  }
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Your address - - GOV.UK"
+    "Check your details - securities-transfer-charge-reg-frontend - GOV.UK"
 
-  def enterCountry(country: String): Unit = {
-    verifyPageTitle(YourAddressPage.pageTitle)
-    input(Locators.dropDownCountry, country)
-    continue()
-    // additional continue is to select and continue to next page
+  def confirmDetails(option: ConfirmationOption = Yes): Unit = {
+    verifyPageTitle(pageTitle)
+    radioButton(option.selector)
     continue()
   }
 }

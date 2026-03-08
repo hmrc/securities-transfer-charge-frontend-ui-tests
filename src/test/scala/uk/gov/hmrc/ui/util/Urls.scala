@@ -17,12 +17,29 @@
 package uk.gov.hmrc.ui.util
 
 object Urls extends Enumeration {
+  val env: String = Option(System.getProperty("environment")).map(_.toLowerCase).getOrElse("local")
+
+  val AUTH: String     =
+    if (env == "local") ""
+    else "/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
+  val ORG_AUTH: String =
+    if (env == "local") "" else "auth-login-stub/gg-sign-in?continue=/securities-transfer-charge/submissions-dashboard"
+
   val LOCAL   =
     "http://localhost:9949/auth-login-stub/gg-sign-in?continue=http%3A%2F%2Flocalhost%3A9000%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
   val QA      =
-    "https://www.qa.tax.service.gov.uk/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
+    "https://www.qa.tax.service.gov.uk/"
   val DEV     =
-    "https://www.development.tax.service.gov.uk/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
+    "https://www.development.tax.service.gov.uk/"
   val STAGING =
-    "https://www.staging.tax.service.gov.uk/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
+    "https://www.staging.tax.service.gov.uk/"
+
+//  val LOCAL   =
+//    "http://localhost:9949/auth-login-stub/gg-sign-in?continue=http%3A%2F%2Flocalhost%3A9000%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
+//  val QA      =
+//    "https://www.qa.tax.service.gov.uk/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
+//  val DEV     =
+//    "https://www.development.tax.service.gov.uk/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
+//  val STAGING =
+//    "https://www.staging.tax.service.gov.uk/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
 }

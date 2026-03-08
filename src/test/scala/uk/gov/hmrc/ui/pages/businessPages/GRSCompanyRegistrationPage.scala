@@ -14,19 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.businessPages
 
-object ContactNumberPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "register-securities-transfer-charge/what-is-your-contact-number"
+object GRSCompanyRegistrationPage extends BasePage {
+
+  override def pageUrl: String = "/identify-your-incorporated-business/*/company-number"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String =
-    "What’s your contact number? - securities-transfer-charge-reg-frontend - GOV.UK"
+  override def pageTitle: String = "What is the company registration number? - - GOV.UK & Company registration number - - GOV.UK"
 
-  def enterContactNumber(contactNumber: String): Unit = {
-    verifyPageTitle(pageTitle)
-    input(Locators.txtContactNumber, contactNumber)
+  def enterCompanyRegistrationNumber(regNumber: String): Unit = {
+    verifyPageTitleContains(pageTitle)
+    input(Locators.txtCompanyRegNumber, regNumber)
     continue()
   }
 }

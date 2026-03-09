@@ -26,7 +26,7 @@ object EnterYourAddressPage extends BasePage {
   override def pageTitle: String =
     "Enter your address - - GOV.UK"
 
-  def enterAddressDetails(address1:String,postcode: String): Unit = {
+  def enterAddressDetails(address1: String, postcode: String): Unit = {
     verifyPageTitle(pageTitle)
     input(Locators.txtAddress1, address1)
     input(Locators.txtPostCode, postcode)

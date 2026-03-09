@@ -24,7 +24,7 @@ object GRSCheckYourAnswersPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-  "Check your answers - - GOV.UK"
+    "Check your answers - - GOV.UK"
 
   def clickContinue(): Unit = {
     verifyPageTitle(pageTitle)

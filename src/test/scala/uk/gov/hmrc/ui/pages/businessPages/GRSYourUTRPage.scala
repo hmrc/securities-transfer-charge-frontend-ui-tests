@@ -24,7 +24,7 @@ object GRSYourUTRPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-  "What is the company registration number? - - GOV.UK & Your Corporation Tax Unique Taxpayer Reference (UTR) - - GOV.UK & What is the registered society’s Unique Taxpayer Reference? - - GOV.UK"
+    "What is the company registration number? - - GOV.UK & Your Corporation Tax Unique Taxpayer Reference (UTR) - - GOV.UK & What is the registered society’s Unique Taxpayer Reference? - - GOV.UK"
 
   def enterUTR(utr: String): Unit = {
     verifyPageTitleContains(pageTitle)

@@ -23,7 +23,8 @@ object GRSCompanyRegistrationPage extends BasePage {
   override def pageUrl: String = "/identify-your-incorporated-business/*/company-number"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String = "What is the company registration number? - - GOV.UK & Company registration number - - GOV.UK"
+  override def pageTitle: String =
+    "What is the company registration number? - - GOV.UK & Company registration number - - GOV.UK"
 
   def enterCompanyRegistrationNumber(regNumber: String): Unit = {
     verifyPageTitleContains(pageTitle)

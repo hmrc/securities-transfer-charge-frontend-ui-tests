@@ -30,15 +30,15 @@ object IncorporatedBusinessPage extends BasePage {
 
   val btnSubmit: By = By.cssSelector("button[type='submit'].govuk-button")
 
-  private def ensureChecked(elementId: String): Unit = {
+  private def ensureChecked(elementId: String): Unit =
     try {
       val elem = driver.findElement(By.id(elementId))
-      try {
+      try
         if (!elem.isSelected) {
           elem.click()
           Thread.sleep(200)
         }
-      } catch {
+      catch {
         case _: Throwable =>
           try {
             elem.click()
@@ -50,16 +50,16 @@ object IncorporatedBusinessPage extends BasePage {
     } catch {
       case _: Throwable =>
     }
-  }
 
   def openEntityValidationService(): Unit = {
-    navigateToPage(url+"/identify-your-incorporated-business/test-only/feature-switches")
+    navigateToPage(url + "/identify-your-incorporated-business/test-only/feature-switches")
     ensureChecked("feature-switch.companies-house-stub")
     ensureChecked("feature-switch.business-verification-stub")
     ensureChecked("feature-switch.ct-reference-stub")
     ensureChecked("feature-switch.des-stub")
 
     for (i <- 1 to 5) {
+
       /** wait for 0.5 sec */
       Thread.sleep(500)
       click(btnSubmit)

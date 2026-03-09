@@ -35,9 +35,8 @@ object GRSConfirmYourBusinessPage extends BasePage {
   }
 
   // placeholder yet to finalize the title
-  override def pageTitle: String = {
+  override def pageTitle: String =
     "Is this your business? - - GOV.UK"
-  }
 
   def confirmDetails(option: ConfirmationOption = Yes): Unit = {
     verifyPageTitle(pageTitle)

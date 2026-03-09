@@ -23,9 +23,8 @@ object FindYourCompanysAddressPage extends BasePage {
   override def pageUrl: String = "lookup-address/*/lookup"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String = {
+  override def pageTitle: String =
     "Find your company’s address - - GOV.UK"
-  }
 
   def enterPostCode(postcode: String): Unit = {
     verifyPageTitle(pageTitle)

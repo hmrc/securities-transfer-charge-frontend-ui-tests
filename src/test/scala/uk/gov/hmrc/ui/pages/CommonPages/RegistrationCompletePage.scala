@@ -30,7 +30,7 @@ object RegistrationCompletePage extends BasePage {
   def validateRegistrationCompleteMessage(expectedTitle: String): Unit = {
     verifyPageTitle(pageTitle)
     val panelTitle = driver.findElement(By.cssSelector(".govuk-panel__title"))
-    
+
     val actualText = panelTitle.getText.trim
 
     assert(

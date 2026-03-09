@@ -24,7 +24,7 @@ object GRSPostcodePartnershipPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-  "The postcode used to register the partnership for Self Assessment - - GOV.UK"
+    "The postcode used to register the partnership for Self Assessment - - GOV.UK"
 
   def enterPostcode(postcode: String): Unit = {
     verifyPageTitle(pageTitle)

@@ -23,13 +23,11 @@ object ConfirmYourAddressPage extends BasePage {
   override def pageUrl: String = "/lookup-address/*/confirm"
 
   // placeholder yet to finalize the title
-  override def pageTitle: String = {
+  override def pageTitle: String =
     "Confirm your address - - GOV.UK"
-  }
 //  "Review and confirm - - GOV.UK"
 
-  def confirm(): Unit = {
+  def confirm(): Unit =
 //    verifyPageTitle(pageTitle)
     continue()
-  }
 }

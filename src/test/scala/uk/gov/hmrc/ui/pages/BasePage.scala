@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait, Web
 import org.openqa.selenium.{By, JavascriptExecutor, WebDriver, WebElement}
 import org.scalatest.concurrent.Eventually
 import org.scalatest.matchers.must.Matchers
+import org.scalatest.time.{Millis, Span}
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.driver.BrowserDriver
@@ -147,7 +148,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     val element: WebElement    = driver.findElement(By.cssSelector(optionalValue))
     val ex: JavascriptExecutor = driver.asInstanceOf[JavascriptExecutor]
     ex.executeScript("arguments[0].click()", element)
-    Thread.sleep(500)
+    eventually(timeout(Span(200, Millis))) {}
   }
 
   /** Checkbox interaction */

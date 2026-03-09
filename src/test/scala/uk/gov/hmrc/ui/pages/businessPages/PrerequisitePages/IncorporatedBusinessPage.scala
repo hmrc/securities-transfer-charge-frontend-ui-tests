@@ -17,6 +17,7 @@
 package uk.gov.hmrc.ui.pages.businessPages.PrerequisitePages
 
 import org.openqa.selenium.By
+import org.scalatest.time.{Millis, Span}
 import uk.gov.hmrc.ui.conf.TestConfiguration
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.pages.CommonPages.AuthWizard.{click, url}
@@ -36,13 +37,13 @@ object IncorporatedBusinessPage extends BasePage {
       try
         if (!elem.isSelected) {
           elem.click()
-          Thread.sleep(200)
+          eventually(timeout(Span(200, Millis))) {}
         }
       catch {
         case _: Throwable =>
           try {
             elem.click()
-            Thread.sleep(200)
+            eventually(timeout(Span(200, Millis))) {}
           } catch {
             case _: Throwable => ()
           }
@@ -61,9 +62,8 @@ object IncorporatedBusinessPage extends BasePage {
     for (i <- 1 to 5) {
 
       /** wait for 0.5 sec */
-      Thread.sleep(500)
+      eventually(timeout(Span(500, Millis))) {}
       click(btnSubmit)
     }
-    Thread.sleep(5000)
   }
 }

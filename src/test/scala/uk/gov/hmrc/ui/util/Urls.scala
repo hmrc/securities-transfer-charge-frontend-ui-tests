@@ -33,13 +33,4 @@ object Urls extends Enumeration {
     "https://www.development.tax.service.gov.uk/"
   val STAGING =
     "https://www.staging.tax.service.gov.uk/"
-
-//  val LOCAL   =
-//    "http://localhost:9949/auth-login-stub/gg-sign-in?continue=http%3A%2F%2Flocalhost%3A9000%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
-//  val QA      =
-//    "https://www.qa.tax.service.gov.uk/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
-//  val DEV     =
-//    "https://www.development.tax.service.gov.uk/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
-//  val STAGING =
-//    "https://www.staging.tax.service.gov.uk/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
 }

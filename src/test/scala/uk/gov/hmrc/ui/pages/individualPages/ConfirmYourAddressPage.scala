@@ -24,10 +24,9 @@ object ConfirmYourAddressPage extends BasePage {
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Confirm your address - - GOV.UK"
-//  "Review and confirm - - GOV.UK"
+    "Confirm your address - - GOV.UK & Review and confirm - - GOV.UK"
 
   def confirm(): Unit =
-//    verifyPageTitle(pageTitle)
+    verifyPageTitleContains(pageTitle)
     continue()
 }

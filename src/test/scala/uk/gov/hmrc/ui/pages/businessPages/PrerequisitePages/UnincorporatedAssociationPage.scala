@@ -68,5 +68,6 @@ object UnincorporatedAssociationPage extends BasePage {
       eventually(timeout(Span(500, Millis))) {}
       click(btnSubmit)
     }
+    eventually(timeout(Span(2000, Millis))) {}
   }
 }

@@ -14,18 +14,33 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.businessPages
 
-object ConfirmYourAddressPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "/lookup-address/*/confirm"
+object GRSConfirmYourBusinessPage extends BasePage {
+
+  override def pageUrl: String = "/identify-your-incorporated-business/*/confirm-business-name"
+
+  sealed trait ConfirmationOption {
+    def selector: String
+  }
+
+  case object Yes extends ConfirmationOption {
+    val selector = "#confirmBusinessName"
+  }
+
+  case object No extends ConfirmationOption {
+    val selector = "#confirmBusinessName-2"
+  }
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "Confirm your address - - GOV.UK"
+    "Is this your business? - - GOV.UK"
 
-  def confirm(): Unit = {
+  def confirmDetails(option: ConfirmationOption = Yes): Unit = {
     verifyPageTitle(pageTitle)
+    radioButton(option.selector)
     continue()
   }
 }

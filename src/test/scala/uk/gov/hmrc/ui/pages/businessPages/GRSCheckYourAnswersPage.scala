@@ -14,14 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.util
+package uk.gov.hmrc.ui.pages.businessPages
 
-object Env {
-  val baseUrl: String = Option(System.getProperty("environment")).map(_.toLowerCase) match {
-    case Some("dev")     => Urls.DEV
-    case Some("local")   => Urls.LOCAL
-    case Some("qa")      => Urls.QA
-    case Some("staging") => Urls.STAGING
-    case _               => Urls.LOCAL
+import uk.gov.hmrc.ui.pages.BasePage
+
+object GRSCheckYourAnswersPage extends BasePage {
+
+  override def pageUrl: String = "/identify-your-incorporated-business/*/check-your-answers-business"
+
+  // placeholder yet to finalize the title
+  override def pageTitle: String =
+    "Check your answers - - GOV.UK"
+
+  def clickContinue(): Unit = {
+    verifyPageTitle(pageTitle)
+    continue()
   }
 }

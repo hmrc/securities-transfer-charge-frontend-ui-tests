@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait, Wait, Web
 import org.openqa.selenium.{By, JavascriptExecutor, WebDriver, WebElement}
 import org.scalatest.concurrent.Eventually
 import org.scalatest.matchers.must.Matchers
+import org.scalatest.time.{Millis, Span}
 import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.driver.BrowserDriver
@@ -58,9 +59,14 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     val txtHeader: By        = By.xpath("//h1")
     val lnkAddrManually      = By.ById("manualAddress")
     val txtPostCode: By      = By.ById("postcode")
+    val txtSaPostCode: By    = By.ById("saPostcode")
     val txtAddress1: By      = By.ById("line1")
     val txtTown: By          = By.ById("town")
     val txtAddressPostCode   = By.ById("postcode")
+    val txtCompanyRegNumber  = By.ById("companyNumber")
+    val txtUtr               = By.ById("utr")
+    val txtCtUtr             = By.ById("ctutr")
+    val txtSaUtr             = By.ById("sa-utr")
     val banner               = ".govuk-notification-banner"
     val successBanner: By    = By.cssSelector("h1.govuk-panel__title")
     val signOut              = "Sign out"
@@ -142,6 +148,7 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     val element: WebElement    = driver.findElement(By.cssSelector(optionalValue))
     val ex: JavascriptExecutor = driver.asInstanceOf[JavascriptExecutor]
     ex.executeScript("arguments[0].click()", element)
+    eventually(timeout(Span(200, Millis))) {}
   }
 
   /** Checkbox interaction */
@@ -174,8 +181,20 @@ trait BasePage extends PageObject with Eventually with Matchers with LazyLogging
     )
   }
 
+  def verifyPageTitleContains(expectedString: String): Unit = {
+    println("Actual page title is: " + driver.getTitle)
+    waitForPageTitleContains(expectedString)
+    assert(
+      expectedString.contains(driver.getTitle),
+      s"Expected title '$expectedString' does not contain actual title '${driver.getTitle}'"
+    )
+  }
+
   def waitForPageTitle(expectedTitle: String): Unit =
     fluentWait.until(ExpectedConditions.titleIs(expectedTitle))
+
+  def waitForPageTitleContains(expectedTitle: String): Unit =
+    fluentWait.until((driver: WebDriver) => expectedTitle.contains(driver.getTitle))
 
   def verifyPageHeader(expectedHeader: String): Unit = {
     waitForVisibilityOfElement(Locators.txtHeader)

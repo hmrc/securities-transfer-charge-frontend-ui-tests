@@ -26,21 +26,35 @@ object KOPage extends BasePage {
   override def pageTitle: String =
     "Before you use the service - securities-transfer-charge-reg-frontend - GOV.UK"
 
-  def validateLowClErrorMessage(): Unit = {
+  val lowCl            = "Before you use the service"
+  val checkYourDetails = "You must update the details on your government gateway account"
+  val nonUk            = "You cannot use this service"
+  val trust            = "You cannot use this service"
+  val general          = "You cannot use this service"
+  val scottish         = "You cannot use this service"
 
-    val expectedHeading = "Before you use the service"
-    val headingText     = driver.findElement(By.cssSelector("h1")).getText.trim
+  val pageTitleLowCl            = "Before you use the service - securities-transfer-charge-reg-frontend - GOV.UK"
+  val pageTitleCheckYourDetails =
+    "You must update the details on your government gateway account - securities-transfer-charge-reg-frontend - GOV.UK"
+  val pageTitleNonUk            = "You cannot use this service - securities-transfer-charge-reg-frontend - GOV.UK"
+  val pageTitleTrust            = "You cannot use this service - securities-transfer-charge-reg-frontend - GOV.UK"
+  val pageTitleGeneral          = "You cannot use this service - securities-transfer-charge-reg-frontend - GOV.UK"
+  val pageTitleScottish         = "You cannot use this service - securities-transfer-charge-reg-frontend - GOV.UK"
 
-    assert(
-      headingText == expectedHeading,
-      s"Expected heading text '$expectedHeading' but found '$headingText'"
-    )
+  def getPageTitleForHeading(expectedHeading: String): String = expectedHeading match {
+    case `lowCl`            => pageTitleLowCl
+    case `checkYourDetails` => pageTitleCheckYourDetails
+    case `nonUk`            => pageTitleNonUk
+    case `trust`            => pageTitleTrust
+    case `general`          => pageTitleGeneral
+    case `scottish`         => pageTitleScottish
+    case _                  => pageTitle // fallback to default
   }
 
-  def validateCheckYourDetailsErrorMessage(): Unit = {
-
-    val expectedHeading = "You must update the details on your government gateway account"
-    val headingText     = driver.findElement(By.cssSelector("h1")).getText.trim
+  def validateErrorMessage(expectedHeading: String): Unit = {
+    val matchingPageTitle = getPageTitleForHeading(expectedHeading)
+    verifyPageTitle(matchingPageTitle)
+    val headingText       = waitForVisibilityOfElement(By.cssSelector("h1")).getText.trim
 
     assert(
       headingText == expectedHeading,

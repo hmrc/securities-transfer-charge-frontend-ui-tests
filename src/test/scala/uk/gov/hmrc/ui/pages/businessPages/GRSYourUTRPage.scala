@@ -14,14 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.util
+package uk.gov.hmrc.ui.pages.businessPages
 
-object Env {
-  val baseUrl: String = Option(System.getProperty("environment")).map(_.toLowerCase) match {
-    case Some("dev")     => Urls.DEV
-    case Some("local")   => Urls.LOCAL
-    case Some("qa")      => Urls.QA
-    case Some("staging") => Urls.STAGING
-    case _               => Urls.LOCAL
+import uk.gov.hmrc.ui.pages.BasePage
+
+object GRSYourUTRPage extends BasePage {
+
+  override def pageUrl: String = "/identify-your-incorporated-business/*/ct-utr"
+
+  // placeholder yet to finalize the title
+  override def pageTitle: String =
+    "What is the company registration number? - - GOV.UK & Your Corporation Tax Unique Taxpayer Reference (UTR) - - GOV.UK & What is the registered society’s Unique Taxpayer Reference? - - GOV.UK"
+
+  def enterUTR(utr: String): Unit = {
+    verifyPageTitleContains(pageTitle)
+    input(Locators.txtCtUtr, utr)
+    continue()
   }
 }

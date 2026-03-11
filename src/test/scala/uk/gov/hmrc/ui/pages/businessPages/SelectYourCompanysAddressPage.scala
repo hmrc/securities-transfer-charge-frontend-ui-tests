@@ -14,19 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.businessPages
 
-object EmailAddressPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "/register-securities-transfer-charge/what-is-your-email-address"
+object SelectYourCompanysAddressPage extends BasePage {
+
+  override def pageUrl: String = "/lookup-address/*/select?postcode=*"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What’s your email address? - securities-transfer-charge-reg-frontend - GOV.UK"
+    "Select your company’s address - - GOV.UK"
 
-  def enterEmailAddress(email: String): Unit = {
+  def selectAddress(): Unit = {
     verifyPageTitle(pageTitle)
-    input(Locators.txtEmailAddress, email)
+    click(Locators.rdoFirstAddress)
     continue()
   }
 }

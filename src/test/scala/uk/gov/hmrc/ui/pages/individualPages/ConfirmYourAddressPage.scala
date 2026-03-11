@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.individualPages
 
-object DateOfBirthPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "register-securities-transfer-charge/date-of-birth"
+object ConfirmYourAddressPage extends BasePage {
+
+  override def pageUrl: String = "/lookup-address/*/confirm"
 
   // placeholder yet to finalize the title
   override def pageTitle: String =
-    "What’s your date of birth? - securities-transfer-charge-reg-frontend - GOV.UK"
+    "Confirm your address - - GOV.UK & Review and confirm - - GOV.UK"
 
-  def enterDob(date: String, month: String, year: String): Unit = {
-    verifyPageTitle(pageTitle)
-    input(Locators.txtDate, date)
-    input(Locators.txtMonth, month)
-    input(Locators.txtYear, year)
+  def confirm(): Unit =
+    verifyPageTitleContains(pageTitle)
     continue()
-  }
 }

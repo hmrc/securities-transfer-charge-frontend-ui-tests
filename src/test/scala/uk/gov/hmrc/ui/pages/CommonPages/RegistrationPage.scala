@@ -14,19 +14,20 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.pages
+package uk.gov.hmrc.ui.pages.CommonPages
 
-object ContactNumberPage extends BasePage {
+import uk.gov.hmrc.ui.pages.BasePage
 
-  override def pageUrl: String = "register-securities-transfer-charge/what-is-your-contact-number"
+object RegistrationPage extends BasePage {
 
-  // placeholder yet to finalize the title
+  override def pageUrl: String = "register-securities-transfer-charge/register"
+
   override def pageTitle: String =
-    "What’s your contact number? - securities-transfer-charge-reg-frontend - GOV.UK"
-
-  def enterContactNumber(contactNumber: String): Unit = {
-    verifyPageTitle(pageTitle)
-    input(Locators.txtContactNumber, contactNumber)
+//    "Stamp taxes on shares - HMRC - Stamp tax on shares - GOV.UK"
+    "Register to tell us about a securities transfer - securities-transfer-charge-reg-frontend - GOV.UK"
+//  Register to tell us about a securities transfer -securities - transfer - charge - reg - frontend - GOV.UK
+  def startRegistration(): Unit = {
+    verifyPageTitle(RegistrationPage.pageTitle)
     continue()
   }
 }

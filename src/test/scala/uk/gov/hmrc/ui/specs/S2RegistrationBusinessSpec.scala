@@ -26,6 +26,8 @@ import uk.gov.hmrc.ui.pages.businessPages.PrerequisitePages.*
 import uk.gov.hmrc.ui.pages.businessPages.SelectYourBusinessPartnershipTypePage.*
 import uk.gov.hmrc.ui.pages.businessPages.SelectYourBusinessTypePage.*
 import uk.gov.hmrc.ui.pages.individualPages.EnterYourAddressPage
+import uk.gov.hmrc.ui.util.TestDataConstants.*
+import uk.gov.hmrc.ui.util.TestDataGenerator.getUKPostCode
 
 class S2RegistrationBusinessSpec
     extends AnyFeatureSpec
@@ -62,21 +64,21 @@ class S2RegistrationBusinessSpec
       SelectYourBusinessTypePage.selectType()
 
       And("User navigates through GRS flow")
-      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber("AB123456")
+      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber(companyRegistrationNumber)
       GRSConfirmYourBusinessPage.confirmDetails()
-      GRSYourUTRPage.enterUTR("1234567890")
+      GRSYourUTRPage.enterUTR(utr)
       GRSCheckYourAnswersPage.clickContinue()
 
       And("User enters the required values - address, email, contact")
-      YourCompanyAddressPage.enterCountry("United Kingdom")
-      FindYourCompanysAddressPage.enterPostCode("NE32 5JU")
+      YourCompanyAddressPage.enterCountry(ukCountry)
+      FindYourCompanysAddressPage.enterPostCode(getUKPostCode)
       SelectYourCompanysAddressPage.selectAddress()
       ConfirmYourCompanysAddressPage.confirm()
-      CompanyEmailAddressPage.enterEmailAddress("abcd@xyz.com")
-      CompanyContactNumberPage.enterContactNumber("+44 1234567890")
+      CompanyEmailAddressPage.enterEmailAddress(emailAddress)
+      CompanyContactNumberPage.enterContactNumber(contactNumber)
 
       Then("User verifies success message is displayed")
-      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+      RegistrationCompletePage.validateRegistrationCompleteMessage(registrationComplete)
     }
 
     Scenario("Register a user as a Business Using Manual Address Entry") {
@@ -91,21 +93,21 @@ class S2RegistrationBusinessSpec
       SelectYourBusinessTypePage.selectType()
 
       And("User navigates through GRS flow")
-      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber("AB123456")
+      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber(companyRegistrationNumber)
       GRSConfirmYourBusinessPage.confirmDetails()
-      GRSYourUTRPage.enterUTR("1234567890")
+      GRSYourUTRPage.enterUTR(utr)
       GRSCheckYourAnswersPage.clickContinue()
 
       And("User enters the required values - address, email, contact")
-      YourCompanyAddressPage.enterCountry("United Kingdom")
+      YourCompanyAddressPage.enterCountry(ukCountry)
       FindYourCompanysAddressPage.clickEnterTheAddressManually()
-      EnterYourAddressPage.enterAddressDetails("A1", "NE32 5JU")
+      EnterYourAddressPage.enterAddressDetails(addressLine1, getUKPostCode)
       ConfirmYourCompanysAddressPage.confirm()
-      CompanyEmailAddressPage.enterEmailAddress("abcd@xyz.com")
-      CompanyContactNumberPage.enterContactNumber("+44 1234567890")
+      CompanyEmailAddressPage.enterEmailAddress(emailAddress)
+      CompanyContactNumberPage.enterContactNumber(contactNumber)
 
       Then("User verifies success message is displayed")
-      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+      RegistrationCompletePage.validateRegistrationCompleteMessage(registrationComplete)
     }
 
     Scenario("Register a user as a Business Using Non UK Address") {
@@ -120,20 +122,20 @@ class S2RegistrationBusinessSpec
       SelectYourBusinessTypePage.selectType()
 
       And("User navigates through GRS flow")
-      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber("AB123456")
+      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber(companyRegistrationNumber)
       GRSConfirmYourBusinessPage.confirmDetails()
-      GRSYourUTRPage.enterUTR("1234567890")
+      GRSYourUTRPage.enterUTR(utr)
       GRSCheckYourAnswersPage.clickContinue()
 
       And("User enters the required values - address, email, contact")
-      YourCompanyAddressPage.enterCountry("India")
-      EnterYourAddressPage.enterAddressDetails("A1", "123456")
+      YourCompanyAddressPage.enterCountry(nonUkCountry)
+      EnterYourAddressPage.enterAddressDetails(addressLine1, nonUkPostCode)
       ConfirmYourCompanysAddressPage.confirm()
-      CompanyEmailAddressPage.enterEmailAddress("abcd@xyz.com")
-      CompanyContactNumberPage.enterContactNumber("+44 1234567890")
+      CompanyEmailAddressPage.enterEmailAddress(emailAddress)
+      CompanyContactNumberPage.enterContactNumber(contactNumber)
 
       Then("User verifies success message is displayed")
-      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+      RegistrationCompletePage.validateRegistrationCompleteMessage(registrationComplete)
     }
 
     /*Various GRS flows*/
@@ -151,22 +153,22 @@ class S2RegistrationBusinessSpec
 
       And("User navigates through GRS flow")
       SelectYourBusinessPartnershipTypePage.selectType()
-      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber("01234567")
+      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber(companyRegistrationNumberSL)
       GRSConfirmYourBusinessLimitedPage.confirmDetails()
-      GRSYourUTRLimitedPage.enterUTR("1234567890")
-      GRSPostcodePartnershipPage.enterPostcode("AA1 1AA")
+      GRSYourUTRLimitedPage.enterUTR(utr)
+      GRSPostcodePartnershipPage.enterPostcode(postcodeSL)
       GRSCheckYourAnswersPage.clickContinue()
 
       And("User enters the required values - address, email, contact")
-      YourCompanyAddressPage.enterCountry("United Kingdom")
-      FindYourCompanysAddressPage.enterPostCode("NE32 5JU")
+      YourCompanyAddressPage.enterCountry(ukCountry)
+      FindYourCompanysAddressPage.enterPostCode(getUKPostCode)
       SelectYourCompanysAddressPage.selectAddress()
       ConfirmYourCompanysAddressPage.confirm()
-      CompanyEmailAddressPage.enterEmailAddress("abcd@xyz.com")
-      CompanyContactNumberPage.enterContactNumber("+44 1234567890")
+      CompanyEmailAddressPage.enterEmailAddress(emailAddress)
+      CompanyContactNumberPage.enterContactNumber(contactNumber)
 
       Then("User verifies success message is displayed")
-      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+      RegistrationCompletePage.validateRegistrationCompleteMessage(registrationComplete)
     }
 
     Scenario("Register a user as a Business - Partnership : Limited") {
@@ -182,22 +184,22 @@ class S2RegistrationBusinessSpec
 
       And("User navigates through GRS flow")
       SelectYourBusinessPartnershipTypePage.selectType(Limited)
-      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber("01234567")
+      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber(companyRegistrationNumberSL)
       GRSConfirmYourBusinessLimitedPage.confirmDetails()
-      GRSYourUTRLimitedPage.enterUTR("1234567890")
-      GRSPostcodePartnershipPage.enterPostcode("AA1 1AA")
+      GRSYourUTRLimitedPage.enterUTR(utr)
+      GRSPostcodePartnershipPage.enterPostcode(postcodeSL)
       GRSCheckYourAnswersPage.clickContinue()
 
       And("User enters the required values - address, email, contact")
-      YourCompanyAddressPage.enterCountry("United Kingdom")
-      FindYourCompanysAddressPage.enterPostCode("NE32 5JU")
+      YourCompanyAddressPage.enterCountry(ukCountry)
+      FindYourCompanysAddressPage.enterPostCode(getUKPostCode)
       SelectYourCompanysAddressPage.selectAddress()
       ConfirmYourCompanysAddressPage.confirm()
-      CompanyEmailAddressPage.enterEmailAddress("abcd@xyz.com")
-      CompanyContactNumberPage.enterContactNumber("+44 1234567890")
+      CompanyEmailAddressPage.enterEmailAddress(emailAddress)
+      CompanyContactNumberPage.enterContactNumber(contactNumber)
 
       Then("User verifies success message is displayed")
-      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+      RegistrationCompletePage.validateRegistrationCompleteMessage(registrationComplete)
     }
 
     Scenario("Register a user as a Business - Partnership : Limited Liability") {
@@ -213,22 +215,22 @@ class S2RegistrationBusinessSpec
 
       And("User navigates through GRS flow")
       SelectYourBusinessPartnershipTypePage.selectType(LimitedLiability)
-      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber("01234567")
+      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber(companyRegistrationNumberSL)
       GRSConfirmYourBusinessLimitedPage.confirmDetails()
-      GRSYourUTRLimitedPage.enterUTR("1234567890")
-      GRSPostcodePartnershipPage.enterPostcode("AA1 1AA")
+      GRSYourUTRLimitedPage.enterUTR(utr)
+      GRSPostcodePartnershipPage.enterPostcode(postcodeSL)
       GRSCheckYourAnswersPage.clickContinue()
 
       And("User enters the required values - address, email, contact")
-      YourCompanyAddressPage.enterCountry("United Kingdom")
-      FindYourCompanysAddressPage.enterPostCode("NE32 5JU")
+      YourCompanyAddressPage.enterCountry(ukCountry)
+      FindYourCompanysAddressPage.enterPostCode(getUKPostCode)
       SelectYourCompanysAddressPage.selectAddress()
       ConfirmYourCompanysAddressPage.confirm()
-      CompanyEmailAddressPage.enterEmailAddress("abcd@xyz.com")
-      CompanyContactNumberPage.enterContactNumber("+44 1234567890")
+      CompanyEmailAddressPage.enterEmailAddress(emailAddress)
+      CompanyContactNumberPage.enterContactNumber(contactNumber)
 
       Then("User verifies success message is displayed")
-      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+      RegistrationCompletePage.validateRegistrationCompleteMessage(registrationComplete)
     }
 
     Scenario("Register a user as a Business - Trust") {
@@ -243,20 +245,20 @@ class S2RegistrationBusinessSpec
       SelectYourBusinessTypePage.selectType(Trust)
 
       And("User navigates through GRS flow")
-      GRSYourUTRTrustPage.enterUTR("1234567890")
-      GRSPostcodeTrustPage.enterPostcode("AA1 1AA")
+      GRSYourUTRTrustPage.enterUTR(utr)
+      GRSPostcodeTrustPage.enterPostcode(postcodeSL)
       GRSCheckYourAnswersPage.clickContinue()
 
       And("User enters the required values - address, email, contact")
-      YourCompanyAddressPage.enterCountry("United Kingdom")
-      FindYourCompanysAddressPage.enterPostCode("NE32 5JU")
+      YourCompanyAddressPage.enterCountry(ukCountry)
+      FindYourCompanysAddressPage.enterPostCode(getUKPostCode)
       SelectYourCompanysAddressPage.selectAddress()
       ConfirmYourCompanysAddressPage.confirm()
-      CompanyEmailAddressPage.enterEmailAddress("abcd@xyz.com")
-      CompanyContactNumberPage.enterContactNumber("+44 1234567890")
+      CompanyEmailAddressPage.enterEmailAddress(emailAddress)
+      CompanyContactNumberPage.enterContactNumber(contactNumber)
 
       Then("User verifies success message is displayed")
-      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+      RegistrationCompletePage.validateRegistrationCompleteMessage(registrationComplete)
     }
 
     Scenario("Register a user as a Business - Registered Society") {
@@ -271,21 +273,21 @@ class S2RegistrationBusinessSpec
       SelectYourBusinessTypePage.selectType(RegisteredSociety)
 
       And("User navigates through GRS flow")
-      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber("21436587")
+      GRSCompanyRegistrationPage.enterCompanyRegistrationNumber(companyRegistrationNumberRS)
       GRSConfirmYourBusinessPage.confirmDetails()
-      GRSYourUTRPage.enterUTR("5432167812")
+      GRSYourUTRPage.enterUTR(utrRS)
       GRSCheckYourAnswersPage.clickContinue()
 
       And("User enters the required values - address, email, contact")
-      YourCompanyAddressPage.enterCountry("United Kingdom")
-      FindYourCompanysAddressPage.enterPostCode("NE32 5JU")
+      YourCompanyAddressPage.enterCountry(ukCountry)
+      FindYourCompanysAddressPage.enterPostCode(getUKPostCode)
       SelectYourCompanysAddressPage.selectAddress()
       ConfirmYourCompanysAddressPage.confirm()
-      CompanyEmailAddressPage.enterEmailAddress("abcd@xyz.com")
-      CompanyContactNumberPage.enterContactNumber("+44 1234567890")
+      CompanyEmailAddressPage.enterEmailAddress(emailAddress)
+      CompanyContactNumberPage.enterContactNumber(contactNumber)
 
       Then("User verifies success message is displayed")
-      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+      RegistrationCompletePage.validateRegistrationCompleteMessage(registrationComplete)
     }
 
     /*Test data to be updated*/

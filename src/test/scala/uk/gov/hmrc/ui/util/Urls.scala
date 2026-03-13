@@ -16,17 +16,34 @@
 
 package uk.gov.hmrc.ui.util
 
+import uk.gov.hmrc.ui.util.Env.baseUrl
+
 object Urls extends Enumeration {
   val env: String = Option(System.getProperty("environment")).map(_.toLowerCase).getOrElse("local")
 
-  val AUTH: String     =
-    if (env == "local") ""
+  val AUTH: String =
+    if (env == "local")
+      "auth-login-stub/gg-sign-in?continue=http%3A%2F%2Flocalhost%3A30037%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
     else "/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
-  val ORG_AUTH: String =
-    if (env == "local") "" else "auth-login-stub/gg-sign-in?continue=/securities-transfer-charge/submissions-dashboard"
+
+  val GRS_INCORPORATED: String =
+    if (env == "local") "http://localhost:9718/identify-your-incorporated-business/test-only/feature-switches"
+    else baseUrl + "/identify-your-incorporated-business/test-only/feature-switches"
+
+  val GRS_PARTNERSHIP: String =
+    if (env == "local") "http://localhost:9722/identify-your-partnership/test-only/feature-switches"
+    else baseUrl + "/identify-your-partnership/test-only/feature-switches"
+
+  val GRS_TRUST: String =
+    if (env == "local") "http://localhost:9725/identify-your-trust/test-only/feature-switches"
+    else baseUrl + "/identify-your-trust/test-only/feature-switches"
+
+  val GRS_UNINCORPORATED: String =
+    if (env == "local") "http://localhost:9725/identify-your-unincorporated-association/test-only/feature-switches"
+    else baseUrl + "/identify-your-unincorporated-association/test-only/feature-switches"
 
   val LOCAL   =
-    "http://localhost:9949/auth-login-stub/gg-sign-in?continue=http%3A%2F%2Flocalhost%3A9000%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
+    "http://localhost:9949/"
   val QA      =
     "https://www.qa.tax.service.gov.uk/"
   val DEV     =

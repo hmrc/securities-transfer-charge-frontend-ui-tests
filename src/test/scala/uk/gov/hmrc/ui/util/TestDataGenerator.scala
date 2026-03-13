@@ -16,6 +16,8 @@
 
 package uk.gov.hmrc.ui.util
 
+import uk.gov.hmrc.ui.util.TestDataConstants.*
+
 import scala.util.Random
 
 object TestDataGenerator {
@@ -49,4 +51,11 @@ object TestDataGenerator {
   }
 
   val testNino: String = generateNino("AB")
+
+  private val env: String = Option(System.getProperty("environment")).map(_.toLowerCase).getOrElse("local")
+
+  def getUKPostCode: String = env match {
+    case "qa" | "staging" => ukPostCodeQA
+    case _                => ukPostCode
+  }
 }

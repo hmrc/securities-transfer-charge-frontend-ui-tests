@@ -17,11 +17,13 @@
 package uk.gov.hmrc.ui.pages.businessPages.PrerequisitePages
 
 import org.openqa.selenium.By
-import org.scalatest.time.{Millis, Span}
+import org.scalatest.time.{Seconds, Span}
 import uk.gov.hmrc.ui.conf.TestConfiguration
-import uk.gov.hmrc.ui.pages.CommonPages.AuthWizard.{click, url}
 import uk.gov.hmrc.ui.pages.BasePage
+import uk.gov.hmrc.ui.pages.CommonPages.AuthWizard.click
 import uk.gov.hmrc.ui.pages.businessPages.PrerequisitePages.IncorporatedBusinessPage.{eventually, timeout}
+import uk.gov.hmrc.ui.util.TestDataConstants.*
+import uk.gov.hmrc.ui.util.Urls.GRS_PARTNERSHIP
 
 object PartnershipPage extends BasePage {
 
@@ -38,13 +40,13 @@ object PartnershipPage extends BasePage {
       try
         if (!elem.isSelected) {
           elem.click()
-          eventually(timeout(Span(200, Millis))) {}
+          eventually(timeout(Span(waitFor1Sec, Seconds))) {}
         }
       catch {
         case _: Throwable =>
           try {
             elem.click()
-            eventually(timeout(Span(200, Millis))) {}
+            eventually(timeout(Span(waitFor1Sec, Seconds))) {}
           } catch {
             case _: Throwable => ()
           }
@@ -54,7 +56,7 @@ object PartnershipPage extends BasePage {
     }
 
   def openEntityValidationService(): Unit = {
-    navigateToPage(url + "/identify-your-partnership/test-only/feature-switches")
+    navigateToPage(GRS_PARTNERSHIP)
     ensureChecked("feature-switch.business-verification-stub")
     ensureChecked("feature-switch.companies-house-stub")
     ensureChecked("feature-switch.partnership-known-facts-stub")
@@ -62,10 +64,9 @@ object PartnershipPage extends BasePage {
 
     for (i <- 1 to 5) {
 
-      /** wait for 0.5 sec */
-      eventually(timeout(Span(500, Millis))) {}
+      eventually(timeout(Span(waitFor2Sec, Seconds))) {}
       click(btnSubmit)
     }
-    eventually(timeout(Span(2000, Millis))) {}
+    eventually(timeout(Span(waitFor5Sec, Seconds))) {}
   }
 }

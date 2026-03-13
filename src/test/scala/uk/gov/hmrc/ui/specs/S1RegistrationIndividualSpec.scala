@@ -23,6 +23,8 @@ import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
 import uk.gov.hmrc.ui.pages.*
 import uk.gov.hmrc.ui.pages.CommonPages.{AuthWizard, RegistrationCompletePage, RegistrationPage}
 import uk.gov.hmrc.ui.pages.individualPages.*
+import uk.gov.hmrc.ui.util.TestDataConstants.*
+import uk.gov.hmrc.ui.util.TestDataGenerator.getUKPostCode
 
 class S1RegistrationIndividualSpec
     extends AnyFeatureSpec
@@ -44,16 +46,16 @@ class S1RegistrationIndividualSpec
       CheckYourDetailsPage.confirmDetails()
 
       And("User enters the required values - DOB, address, email, contact")
-      DateOfBirthPage.enterDob("01", "01", "2000")
-      YourAddressPage.enterCountry("United Kingdom")
-      FindYourAddressPage.enterPostCode("NE32 5JU")
+      DateOfBirthPage.enterDob(dateOfDoB, monthOfDoB, yearOfDoB)
+      YourAddressPage.enterCountry(ukCountry)
+      FindYourAddressPage.enterPostCode(getUKPostCode)
       SelectYourAddressPage.selectAddress()
       ConfirmYourAddressPage.confirm()
-      EmailAddressPage.enterEmailAddress("abcd@xyz.com")
-      ContactNumberPage.enterContactNumber("+44 1234567890")
+      EmailAddressPage.enterEmailAddress(emailAddress)
+      ContactNumberPage.enterContactNumber(contactNumber)
 
       Then("User verifies success message is displayed")
-      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+      RegistrationCompletePage.validateRegistrationCompleteMessage(registrationComplete)
     }
 
     Scenario("Register a user as an Individual Using Manual Address Entry") {
@@ -65,16 +67,16 @@ class S1RegistrationIndividualSpec
       CheckYourDetailsPage.confirmDetails()
 
       And("User enters the required values - DOB, address, email, contact")
-      DateOfBirthPage.enterDob("01", "01", "2001")
-      YourAddressPage.enterCountry("United Kingdom")
+      DateOfBirthPage.enterDob(dateOfDoB, monthOfDoB, yearOfDoB)
+      YourAddressPage.enterCountry(ukCountry)
       FindYourAddressPage.clickEnterTheAddressManually()
-      EnterYourAddressPage.enterAddressDetails("A1", "NE32 5JU")
+      EnterYourAddressPage.enterAddressDetails(addressLine1, getUKPostCode)
       ConfirmYourAddressPage.confirm()
-      EmailAddressPage.enterEmailAddress("abcd@xyz.com")
-      ContactNumberPage.enterContactNumber("+44 1234567890")
+      EmailAddressPage.enterEmailAddress(emailAddress)
+      ContactNumberPage.enterContactNumber(contactNumber)
 
       Then("User verifies success message is displayed")
-      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+      RegistrationCompletePage.validateRegistrationCompleteMessage(registrationComplete)
     }
 
     Scenario("Register a user as an Individual Using Non UK Address") {
@@ -86,15 +88,15 @@ class S1RegistrationIndividualSpec
       CheckYourDetailsPage.confirmDetails()
 
       And("User enters the required values - DOB, address, email, contact")
-      DateOfBirthPage.enterDob("01", "01", "2001")
-      YourAddressPage.enterCountry("India")
-      EnterYourAddressPage.enterAddressDetails("A1", "517503")
+      DateOfBirthPage.enterDob(dateOfDoB, monthOfDoB, yearOfDoB)
+      YourAddressPage.enterCountry(nonUkCountry)
+      EnterYourAddressPage.enterAddressDetails(addressLine1, nonUkPostCode)
       ConfirmYourAddressPage.confirm()
-      EmailAddressPage.enterEmailAddress("abcd@xyz.com")
-      ContactNumberPage.enterContactNumber("+44 1234567890")
+      EmailAddressPage.enterEmailAddress(emailAddress)
+      ContactNumberPage.enterContactNumber(contactNumber)
 
       Then("User verifies success message is displayed")
-      RegistrationCompletePage.validateRegistrationCompleteMessage("Registration complete")
+      RegistrationCompletePage.validateRegistrationCompleteMessage(registrationComplete)
     }
   }
 }

@@ -25,6 +25,7 @@ import uk.gov.hmrc.ui.pages.CommonPages.{AuthWizard, RegistrationPage}
 import uk.gov.hmrc.ui.pages.KOPage.{checkYourDetails, lowCl}
 import uk.gov.hmrc.ui.pages.individualPages.CheckYourDetailsPage
 import uk.gov.hmrc.ui.pages.individualPages.CheckYourDetailsPage.No
+import uk.gov.hmrc.ui.util.TestDataConstants.lowConfidence
 
 class S3RegistrationIndividualKOSpec
     extends AnyFeatureSpec
@@ -39,7 +40,7 @@ class S3RegistrationIndividualKOSpec
   Feature("STC frontend Individual Journeys") {
     Scenario("Error scenario for Register Individual using Low Confidence level") {
       Given("User enters login using the Authority Wizard page with 50 Confidence level")
-      AuthWizard.loginAsIndividual("50")
+      AuthWizard.loginAsIndividual(lowConfidence)
 
       Then("User verifies KO message is displayed")
       KOPage.validateErrorMessage(lowCl)

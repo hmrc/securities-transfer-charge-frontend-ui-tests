@@ -41,13 +41,4 @@ object Urls extends Enumeration {
   val GRS_UNINCORPORATED: String =
     if (env == "local") "http://localhost:9725/identify-your-unincorporated-association/test-only/feature-switches"
     else baseUrl + "/identify-your-unincorporated-association/test-only/feature-switches"
-
-  val LOCAL   =
-    "http://localhost:9949/"
-  val QA      =
-    "https://www.qa.tax.service.gov.uk/"
-  val DEV     =
-    "https://www.development.tax.service.gov.uk/"
-  val STAGING =
-    "https://www.staging.tax.service.gov.uk/"
 }

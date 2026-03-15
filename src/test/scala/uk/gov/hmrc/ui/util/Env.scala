@@ -17,11 +17,13 @@
 package uk.gov.hmrc.ui.util
 
 object Env {
-  val baseUrl: String = Option(System.getProperty("environment")).map(_.toLowerCase) match {
-    case Some("dev")     => Urls.DEV
-    case Some("local")   => Urls.LOCAL
-    case Some("qa")      => Urls.QA
-    case Some("staging") => Urls.STAGING
-    case _               => Urls.LOCAL
+  val env: String = Option(System.getProperty("environment")).map(_.toLowerCase).getOrElse("local")
+
+  val baseUrl: String = env match {
+    case "dev"     => "https://www.development.tax.service.gov.uk/"
+    case "local"   => "http://localhost:9949/"
+    case "qa"      => "https://www.qa.tax.service.gov.uk/"
+    case "staging" => "https://www.staging.tax.service.gov.uk/"
+    case _         => "http://localhost:9949/"
   }
 }

@@ -17,10 +17,8 @@
 package uk.gov.hmrc.ui.pages.businessPages.PrerequisitePages
 
 import org.openqa.selenium.By
-import org.scalatest.time.{Seconds, Span}
 import uk.gov.hmrc.ui.conf.TestConfiguration
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.CommonPages.AuthWizard.click
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.Urls.GRS_INCORPORATED
 
@@ -39,14 +37,12 @@ object IncorporatedBusinessPage extends BasePage {
       try
         if (!elem.isSelected) {
           elem.click()
-          eventually(timeout(Span(waitFor1Sec, Seconds))) {}
         }
       catch {
         case _: Throwable =>
-          try {
+          try
             elem.click()
-            eventually(timeout(Span(waitFor1Sec, Seconds))) {}
-          } catch {
+          catch {
             case _: Throwable => ()
           }
       }
@@ -60,12 +56,13 @@ object IncorporatedBusinessPage extends BasePage {
     ensureChecked("feature-switch.business-verification-stub")
     ensureChecked("feature-switch.ct-reference-stub")
     ensureChecked("feature-switch.des-stub")
-
     for (i <- 1 to 5) {
-
-      eventually(timeout(Span(waitFor2Sec, Seconds))) {}
-      click(btnSubmit)
+      Thread.sleep(waitFor1Sec)
+      try
+        click(btnSubmit)
+      catch {
+        case _: org.openqa.selenium.StaleElementReferenceException => ()
+      }
     }
-    eventually(timeout(Span(waitFor5Sec, Seconds))) {}
   }
 }

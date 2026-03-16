@@ -19,6 +19,7 @@ package uk.gov.hmrc.ui.pages.CommonPages
 import org.openqa.selenium.By
 import uk.gov.hmrc.ui.pages.BasePage
 import uk.gov.hmrc.ui.pages.CommonPages.AuthWizard.click
+import uk.gov.hmrc.ui.util.TestDataConstants.{affinityIndividual, affinityOrganisation, highConfidence}
 import uk.gov.hmrc.ui.util.TestDataGenerator.{generateNino, generateRandomString}
 import uk.gov.hmrc.ui.util.{Env, Urls}
 
@@ -39,10 +40,10 @@ object AuthWizard extends BasePage {
   val givenName: By       = By.id("itmp.givenName")
   val familyName: By      = By.id("itmp.familyName")
 
-  def loginAsIndividual(cl: String = "250"): Unit = {
+  def loginAsIndividual(cl: String = highConfidence): Unit = {
     AuthWizard.navigateToPage(url + Urls.AUTH)
     driver.findElement(confidenceLevel).sendKeys(cl)
-    driver.findElement(affinityGroup).sendKeys("Individual")
+    driver.findElement(affinityGroup).sendKeys(affinityIndividual)
     driver.findElement(nino).sendKeys(generateNino("AC"))
     driver.findElement(givenName).sendKeys(generateRandomString(10))
     driver.findElement(familyName).sendKeys(generateRandomString(10))
@@ -51,7 +52,7 @@ object AuthWizard extends BasePage {
 
   def loginAsOrganisation(): Unit = {
     AuthWizard.navigateToPage(url + Urls.AUTH)
-    driver.findElement(affinityGroup).sendKeys("Organisation")
+    driver.findElement(affinityGroup).sendKeys(affinityOrganisation)
     click(btnSubmit)
   }
 }

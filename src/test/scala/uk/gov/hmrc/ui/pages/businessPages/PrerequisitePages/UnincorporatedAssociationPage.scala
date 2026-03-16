@@ -17,11 +17,10 @@
 package uk.gov.hmrc.ui.pages.businessPages.PrerequisitePages
 
 import org.openqa.selenium.By
-import org.scalatest.time.{Millis, Span}
 import uk.gov.hmrc.ui.conf.TestConfiguration
-import uk.gov.hmrc.ui.pages.CommonPages.AuthWizard.{click, url}
 import uk.gov.hmrc.ui.pages.BasePage
-import uk.gov.hmrc.ui.pages.businessPages.PrerequisitePages.IncorporatedBusinessPage.{eventually, timeout}
+import uk.gov.hmrc.ui.util.TestDataConstants.*
+import uk.gov.hmrc.ui.util.Urls.GRS_UNINCORPORATED
 
 object UnincorporatedAssociationPage extends BasePage {
 
@@ -38,14 +37,12 @@ object UnincorporatedAssociationPage extends BasePage {
       try
         if (!elem.isSelected) {
           elem.click()
-          eventually(timeout(Span(200, Millis))) {}
         }
       catch {
         case _: Throwable =>
-          try {
+          try
             elem.click()
-            eventually(timeout(Span(200, Millis))) {}
-          } catch {
+          catch {
             case _: Throwable => ()
           }
       }
@@ -54,7 +51,7 @@ object UnincorporatedAssociationPage extends BasePage {
     }
 
   def openEntityValidationService(): Unit = {
-    navigateToPage(url + "/identify-your-unincorporated-association/test-only/feature-switches")
+    navigateToPage(GRS_UNINCORPORATED)
     ensureChecked("feature-switch.enable-full-trust-journey")
     ensureChecked("feature-switch.trust-verification-stub")
     ensureChecked("feature-switch.business-verification-stub")
@@ -63,11 +60,12 @@ object UnincorporatedAssociationPage extends BasePage {
     ensureChecked("feature-switch.ct-reference-stub")
 
     for (i <- 1 to 5) {
-
-      /** wait for 0.5 sec */
-      eventually(timeout(Span(500, Millis))) {}
-      click(btnSubmit)
+      Thread.sleep(waitFor1Sec)
+      try
+        click(btnSubmit)
+      catch {
+        case _: org.openqa.selenium.StaleElementReferenceException => ()
+      }
     }
-    eventually(timeout(Span(2000, Millis))) {}
   }
 }

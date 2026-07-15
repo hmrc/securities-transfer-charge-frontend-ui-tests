@@ -24,21 +24,21 @@ object Urls extends Enumeration {
   val AUTH: String =
     if (env == "local")
       "auth-login-stub/gg-sign-in?continue=http%3A%2F%2Flocalhost%3A30037%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
-    else "/auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
+    else "auth-login-stub/gg-sign-in?continue=%2Fregister-securities-transfer-charge%2Fregister%2Fstart"
 
   val GRS_INCORPORATED: String =
     if (env == "local") "http://localhost:9718/identify-your-incorporated-business/test-only/feature-switches"
-    else baseUrl + "/identify-your-incorporated-business/test-only/feature-switches"
+    else baseUrl + "identify-your-incorporated-business/test-only/feature-switches"
 
   val GRS_PARTNERSHIP: String =
     if (env == "local") "http://localhost:9722/identify-your-partnership/test-only/feature-switches"
-    else baseUrl + "/identify-your-partnership/test-only/feature-switches"
+    else baseUrl + "identify-your-partnership/test-only/feature-switches"
 
   val GRS_TRUST: String =
     if (env == "local") "http://localhost:9725/identify-your-trust/test-only/feature-switches"
-    else baseUrl + "/identify-your-trust/test-only/feature-switches"
+    else baseUrl + "identify-your-trust/test-only/feature-switches"
 
   val GRS_UNINCORPORATED: String =
     if (env == "local") "http://localhost:9725/identify-your-unincorporated-association/test-only/feature-switches"
-    else baseUrl + "/identify-your-unincorporated-association/test-only/feature-switches"
+    else baseUrl + "identify-your-unincorporated-association/test-only/feature-switches"
 }

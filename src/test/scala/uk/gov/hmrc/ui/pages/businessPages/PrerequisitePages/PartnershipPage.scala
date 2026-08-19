@@ -58,8 +58,8 @@ object PartnershipPage extends BasePage {
     ensureChecked("feature-switch.partnership-known-facts-stub")
     ensureChecked("feature-switch.register-with-identifiers-stub")
 
-    for (i <- 1 to 5) {
-      Thread.sleep(waitFor1Sec)
+    for (i <- 1 to noOfIterations) {
+      Thread.sleep(waitFor2Secs)
       try
         click(btnSubmit)
       catch {

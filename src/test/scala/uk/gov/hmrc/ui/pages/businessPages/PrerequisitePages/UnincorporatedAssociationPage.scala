@@ -59,8 +59,8 @@ object UnincorporatedAssociationPage extends BasePage {
     ensureChecked("feature-switch.des-stub")
     ensureChecked("feature-switch.ct-reference-stub")
 
-    for (i <- 1 to 5) {
-      Thread.sleep(waitFor1Sec)
+    for (i <- 1 to noOfIterations) {
+      Thread.sleep(waitFor2Secs)
       try
         click(btnSubmit)
       catch {

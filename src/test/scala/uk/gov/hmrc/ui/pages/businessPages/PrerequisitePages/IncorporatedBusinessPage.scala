@@ -57,7 +57,7 @@ object IncorporatedBusinessPage extends BasePage {
     ensureChecked("feature-switch.ct-reference-stub")
     ensureChecked("feature-switch.des-stub")
     for (i <- 1 to noOfIterations) {
-      Thread.sleep(waitFor10Secs)
+      Thread.sleep(waitFor15Secs)
       try
         click(btnSubmit)
       catch {

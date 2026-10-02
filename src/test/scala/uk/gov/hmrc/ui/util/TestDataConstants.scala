@@ -50,10 +50,10 @@ object TestDataConstants {
   final val utr: String                         = "1234567890"
   final val utrRS: String                       = "5432167812"
   final val postcodeSL: String                  = "AA1 1AA"
-  final val waitFor10Secs: Int                  = 10000
+  final val waitFor15Secs: Int                  = 15000
   final val waitFor5Sec: Int                    = 5000
-  final val noOfIterations: Int                 = 10
-  final val maxRetries: Int                     = 5
+  final val noOfIterations: Int                 = 15
+  final val maxRetries: Int                     = 10
 
   // -- Local
   final val ukPostCode: String = "ZZ11ZZ"

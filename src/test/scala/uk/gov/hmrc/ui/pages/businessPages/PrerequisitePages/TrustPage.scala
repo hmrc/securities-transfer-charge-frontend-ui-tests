@@ -61,7 +61,7 @@ object TrustPage extends BasePage {
     ensureChecked("feature-switch.ct-reference-stub")
 
     for (i <- 1 to noOfIterations) {
-      Thread.sleep(waitFor10Secs)
+      Thread.sleep(waitFor15Secs)
       try
         click(btnSubmit)
       catch {

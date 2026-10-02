@@ -30,7 +30,5 @@ object YourAddressPage extends BasePage {
     verifyPageTitle(pageTitle)
     input(Locators.dropDownCountry, country)
     continue()
-    // additional continue is to select and continue to next page
-    continue()
   }
 }

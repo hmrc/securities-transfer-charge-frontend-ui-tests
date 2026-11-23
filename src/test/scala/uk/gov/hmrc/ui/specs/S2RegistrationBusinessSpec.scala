@@ -28,6 +28,7 @@ import uk.gov.hmrc.ui.pages.businessPages.SelectYourBusinessTypePage.*
 import uk.gov.hmrc.ui.pages.individualPages.EnterYourAddressPage
 import uk.gov.hmrc.ui.util.TestDataConstants.*
 import uk.gov.hmrc.ui.util.TestDataGenerator.getUKPostCode
+import uk.gov.hmrc.ui.tags.GRSFailureTests
 
 class S2RegistrationBusinessSpec
     extends AnyFeatureSpec
@@ -178,7 +179,7 @@ class S2RegistrationBusinessSpec
 
     /*Various GRS flows*/
     /*Various Partnership flows*/
-    Scenario("Register a user as a Business - Partnership : Scottish Limited") {
+    Scenario("Register a user as a Business - Partnership : Scottish Limited", GRSFailureTests) {
       retryScenario("Register a user as a Business - Partnership : Scottish Limited") {
         Given("User enters login using the Authority Wizard page")
         AuthWizard.loginAsOrganisation()
@@ -211,7 +212,7 @@ class S2RegistrationBusinessSpec
       }
     }
 
-    Scenario("Register a user as a Business - Partnership : Limited") {
+    Scenario("Register a user as a Business - Partnership : Limited", GRSFailureTests) {
       retryScenario("Register a user as a Business - Partnership : Limited") {
         Given("User enters login using the Authority Wizard page")
         AuthWizard.loginAsOrganisation()
@@ -244,7 +245,7 @@ class S2RegistrationBusinessSpec
       }
     }
 
-    Scenario("Register a user as a Business - Partnership : Limited Liability") {
+    Scenario("Register a user as a Business - Partnership : Limited Liability", GRSFailureTests) {
       retryScenario("Register a user as a Business - Partnership : Limited Liability") {
         Given("User enters login using the Authority Wizard page")
         AuthWizard.loginAsOrganisation()
